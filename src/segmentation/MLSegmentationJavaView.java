@@ -4,10 +4,12 @@
  */
 package segmentation;
 
+
 /**
  *
  * @author lasroun
  */
+import java.io.File;
 public class MLSegmentationJavaView extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MLSegmentationJavaView.class.getName());
@@ -114,6 +116,9 @@ public class MLSegmentationJavaView extends javax.swing.JFrame {
             javax.swing.JOptionPane.showMessageDialog(this, "Le fichier doit être au format .csv", "Format incorrect", javax.swing.JOptionPane.WARNING_MESSAGE);
         } 
         else {
+            
+            ReaderService rds = new ReaderService();
+            File tmp = rds.donneFichierNettoye(fichier, ",");
             // Si tout est OK
             javax.swing.JOptionPane.showMessageDialog(this, "Fichier valide ! Prêt pour l'analyse Weka.", "Succès", javax.swing.JOptionPane.INFORMATION_MESSAGE);
         
