@@ -1,0 +1,75 @@
+Cereal Name,Manufacturer,Type,Calories,Protein (g),Fat,Sodium,Dietary Fiber,Carbs,Sugars,Display Shelf,Potassium,Vitamins and Minerals,Serving Size Weight,Cups per Serving
+100%_bran,nabisco,c,70,4,1,130,10,5,6,3,280,25,1,0.33
+100%_natural_bran,quaker oats,c,120,3,5,15,2,8,8,3,135,0,1,0.80
+all-bran,kelloggs,c,70,4,1,260,9,7,5,3,320,25,1,0.33
+all-bran_with_extra_fiber,kelloggs,c,50,4,0,140,14,8,0,3,330,25,1,0.5
+almond_delight,ralston purina,c,110,2,2,200,1,14,8,3,95.28,25,1,0.75
+apple_cinnamon_cheerios,general mills,c,110,2,2,180,1.5,10.5,10,1,70,25,1,0.75
+apple_jacks,kelloggs,c,110,2,0,125,1,11,14,2,30,25,1,1
+basic_4,general mills,c,130,3,2,210,2,18,8,3,100,25,1.33,0.75
+bran_chex,ralston purina,c,90,2,1,200,4,15,6,1,125,25,1,0.67
+bran_flakes,post,c,90,3,0,210,5,13,5,3,190,25,1,0.67
+cap'n'crunch,quaker oats,c,120,1,2,220,0,12,12,2,35,25,1,0.75
+cheerios,general mills,c,110,6,2,290,2,17,1,1,105,25,1,1.25
+cinnamon_toast_crunch,general mills,c,120,1,3,210,0,13,9,2,45,25,1,0.75
+clusters,general mills,c,110,3,2,140,2,13,7,3,105,25,1,0.5
+cocoa_puffs,general mills,c,110,1,1,180,0,12,13,2,55,25,1,1
+corn_chex,ralston purina,c,110,2,0,280,0,22,3,1,25,25,1,1
+corn_flakes,kelloggs,c,100,2,0,290,1,21,2,1,35,25,1,1
+corn_pops,kelloggs,c,110,1,0,90,1,13,12,2,20,25,1,1
+count_chocula,general mills,c,110,1,1,180,0,12,13,2,65,25,1,1
+cracklin'_oat_bran,kelloggs,c,110,3,3,140,4,10,7,3,160,25,1,0.5
+cream_of_wheat_(quick),nabisco,h,100,3,0,80,1,21,0,2,95.28,0,1,1
+crispix,kelloggs,c,110,2,0,220,1,21,3,3,30,25,1,1
+crispy_wheat_&_raisins,general mills,c,100,2,1,140,2,11,10,3,120,25,1,0.75
+double_chex,ralston purina,c,100,2,0,190,1,18,5,3,80,25,1,0.75
+froot_loops,kelloggs,c,110,2,1,125,1,11,13,2,30,25,1,1
+frosted_flakes,kelloggs,c,110,1,0,200,1,14,11,1,25,25,1,0.75
+frosted_mini-wheats,kelloggs,c,100,3,0,0,3,14,7,2,100,25,1,0.8
+fruitful_bran,kelloggs,c,120,3,0,240,5,14,12,3,190,25,1.33,0.67
+fruity_pebbles,post,c,110,1,1,135,0,13,12,2,25,25,1,0.75
+golden_crisp,post,c,100,2,0,45,0,11,15,1,40,25,1,0.88
+golden_grahams,general mills,c,110,1,1,280,0,15,9,2,45,25,1,0.75
+grape_nuts_flakes,post,c,100,3,1,140,3,15,5,3,85,25,1,0.88
+grape-nuts,post,c,110,3,0,170,3,17,3,3,90,25,1,0.25
+great_grains_pecan,post,c,120,3,3,75,3,13,4,3,100,25,1,0.33
+honey_graham_ohs,quaker oats,c,120,1,2,220,1,12,11,2,45,25,1,1
+honey_nut_cheerios,general mills,c,110,3,1,250,1.5,11.5,10,1,90,25,1,0.75
+honey-comb,post,c,110,1,0,180,0,14,11,1,35,25,1,1.33
+just_right_crunchy__nuggets,kelloggs,c,110,2,1,170,1,17,6,3,60,100,1,0.80
+just_right_fruit_&_nut,kelloggs,c,140,3,1,170,2,20,9,3,95,100,1.3,0.75
+kix,general mills,c,110,2,1,260,0,21,3,2,40,25,1,1.5
+life,quaker oats,c,100,4,2,150,2,12,6,2,95,25,1,0.67
+lucky_charms,general mills,c,110,2,1,180,0,12,12,2,55,25,1,1
+maypo,american home food products,h,100,4,1,0,0,16,3,2,95,25,1,0.80
+mueslix_crispy_blend,kelloggs,c,160,3,2,150,3,17,13,3,160,25,1.5,0.67
+multi-grain_cheerios,general mills,c,100,2,1,220,2,15,6,1,90,25,1,1
+nut&honey_crunch,kelloggs,c,120,2,1,190,0,15,9,2,40,25,1,0.67
+nutri-grain_almond-raisin,kelloggs,c,140,3,2,220,3,21,7,3,130,25,1.33,0.67
+nutri-grain_wheat,kelloggs,c,90,3,0,170,3,18,2,3,90,25,1,0.80
+oatmeal_raisin_crisp,general mills,c,130,3,2,170,1.5,13.5,10,3,120,25,1.25,0.5
+post_nat._raisin_bran,post,c,120,3,1,200,6,11,14,3,260,25,1.33,0.67
+product_19,kelloggs,c,100,3,0,320,1,20,3,3,45,100,1,1
+puffed_rice,quaker oats,c,50,1,0,0,0,13,0,3,15,0,0.5,1
+puffed_wheat,quaker oats,c,50,2,0,0,1,10,0,3,50,0,0.5,0.80
+quaker_oat_squares,quaker oats,c,100,4,1,135,2,14,6,3,110,25,1,0.5
+quaker_oatmeal,quaker oats,h,100,5,2,0,2.7,14.81,6.88,1,110,0,1,0.67
+raisin_bran,kelloggs,c,120,3,1,210,5,14,12,2,240,25,1.33,0.75
+raisin_nut_bran,general mills,c,100,3,2,140,2.5,10.5,8,3,140,25,1,0.5
+raisin_squares,kelloggs,c,90,2,0,0,2,15,6,3,110,25,1,0.5
+rice_chex,ralston purina,c,110,1,0,240,0,23,2,1,30,25,1,1.13
+rice_krispies,kelloggs,c,110,2,0,290,0,22,3,1,35,25,1,1
+shredded_wheat,nabisco,c,80,2,0,0,3,16,0,1,95,0,0.83,0.80
+shredded_wheat_'n'bran,nabisco,c,90,3,0,0,4,19,0,1,140,0,1,0.67
+shredded_wheat_spoon_size,nabisco,c,90,3,0,0,3,20,0,1,120,0,1,0.67
+smacks,kelloggs,c,110,2,1,70,1,9,15,2,40,25,1,0.75
+special_k,kelloggs,c,110,6,0,230,1,16,3,1,55,25,1,1
+strawberry_fruit_wheats,nabisco,c,90,2,0,15,3,15,5,2,90,25,1,0.80
+total_corn_flakes,general mills,c,110,2,1,200,0,21,3,3,35,100,1,1
+total_raisin_bran,general mills,c,140,3,1,190,4,15,14,3,230,100,1.5,1
+total_whole_grain,general mills,c,100,3,1,200,3,16,3,3,110,100,1,1
+triples,general mills,c,110,2,1,250,0,21,3,3,60,25,1,0.75
+trix,general mills,c,110,1,1,140,0,13,12,2,25,25,1,1
+wheat_chex,ralston purina,c,100,3,1,230,3,17,3,1,115,25,1,0.67
+wheaties,general mills,c,100,3,1,200,3,17,3,1,110,25,1,1
+wheaties_honey_gold,general mills,c,110,2,1,200,1,16,8,1,60,25,1,0.75

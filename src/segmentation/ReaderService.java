@@ -29,6 +29,10 @@ public class ReaderService {
      * @return Le fichier temporaire nettoye.
      */
     public File donneFichierNettoye(File fileIn, String separator) {
+        return donneFichierNettoye(fileIn, separator, null);
+    }
+
+    public File donneFichierNettoye(File fileIn, String separator, File outDir) {
         if (!fileIn.exists()) {
             System.err.println("Erreur : Le fichier source n'existe pas.");
             return null;
@@ -40,7 +44,16 @@ public class ReaderService {
 
         // Nom du fichier de sortie
         String nomSortie = "output_temp." + this.getExtension(fileIn.getName());
-        File outputFile = new File(nomSortie);
+        File outputFile;
+        if (outDir != null) {
+            if (!outDir.exists() && !outDir.mkdirs()) {
+                System.err.println("Erreur : impossible de creer le dossier de sortie: " + outDir.getAbsolutePath());
+                return null;
+            }
+            outputFile = new File(outDir, nomSortie);
+        } else {
+            outputFile = new File(nomSortie);
+        }
 
         // ÉTAPE 2 : Seconde lecture pour copier et corriger les donnees
         try (

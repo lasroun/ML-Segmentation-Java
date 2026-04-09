@@ -13,6 +13,7 @@ import java.io.File;
 public class MLSegmentationJavaView extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MLSegmentationJavaView.class.getName());
+    private final SegmentationController segmentationController = new SegmentationController();
 
     /**
      * Creates new form MLSegmentationJavaView
@@ -116,13 +117,33 @@ public class MLSegmentationJavaView extends javax.swing.JFrame {
             javax.swing.JOptionPane.showMessageDialog(this, "Le fichier doit être au format .csv", "Format incorrect", javax.swing.JOptionPane.WARNING_MESSAGE);
         } 
         else {
-            
-            ReaderService rds = new ReaderService();
-            File tmp = rds.donneFichierNettoye(fichier, ",");
-            // Si tout est OK
-            javax.swing.JOptionPane.showMessageDialog(this, "Fichier valide ! Prêt pour l'analyse Weka.", "Succès", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-        
-            System.out.println("Lancement de l'analyse pour : " + chemin);
+            if (!jRbtn1.isSelected() && !jRbtn2.isSelected()) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Selectionnez un algorithme (K Means ou Clustering hierarchique).", "Algorithme manquant", javax.swing.JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            try {
+                final int k = 3;
+                SegmentationController.AlgorithmChoice choice = jRbtn1.isSelected()
+                    ? SegmentationController.AlgorithmChoice.K_MEANS
+                    : SegmentationController.AlgorithmChoice.HIERARCHICAL;
+
+                SegmentationResult result = segmentationController.process(fichier, choice, k);
+                javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    result.toUiSummary(),
+                    "Succes",
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE
+                );
+            } catch (Exception e) {
+                javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Erreur pendant le traitement:\n" + e.getMessage(),
+                    "Erreur",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+                );
+                e.printStackTrace();
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
