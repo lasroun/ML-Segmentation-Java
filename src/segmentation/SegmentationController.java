@@ -2,6 +2,7 @@ package segmentation;
 
 import java.io.File;
 import java.util.Arrays;
+import javax.swing.JFrame;
 import weka.core.Instances;
 
 public class SegmentationController {
@@ -21,7 +22,7 @@ public class SegmentationController {
         this.clusteringService = new ClusteringService();
     }
 
-    public SegmentationResult process(File inputCsv, AlgorithmChoice choice, int k) throws Exception {
+    public SegmentationResult process(JFrame frame,File inputCsv, AlgorithmChoice choice, int k) throws Exception {
         File tmpDir = new File("build/tmp");
         File cleanedCsv = readerService.donneFichierNettoye(inputCsv, ",", tmpDir);
         if (cleanedCsv == null || !cleanedCsv.exists()) {
@@ -32,8 +33,9 @@ public class SegmentationController {
 
         ClusteringService.ClusteringResult result;
         if (choice == AlgorithmChoice.K_MEANS) {
-            result = clusteringService.runKMeans(preparedData, k, 1);
-        } else {
+            result = clusteringService.runKMeans(frame,preparedData, k, 1);
+             
+       } else {
             result = clusteringService.runHierarchical(preparedData, k);
         }
 
