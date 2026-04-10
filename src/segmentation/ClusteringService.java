@@ -76,7 +76,7 @@ public class ClusteringService {
         view.afficher(frame, data, plotName, titre);
     }
 
-    public ClusteringResult runHierarchical(Instances data, int k) throws Exception {
+    public ClusteringResult runHierarchical(JFrame frame,Instances data, int k) throws Exception {
         HierarchicalClusterer hierarchical = new HierarchicalClusterer();
         hierarchical.setNumClusters(k);
         hierarchical.buildClusterer(data);
@@ -92,6 +92,14 @@ public class ClusteringService {
                 sizes[cluster]++;
             }
         }
+        
+        
+        //  IMPORTANT : ajouter colonne cluster
+        Instances clusteredData = getDataWithCluster(data, assignments);
+
+        // afficher graphe (sans centroides)
+        WekaView view = new WekaView(clusteredData, null);
+        view.afficher(frame, clusteredData, "", "Hierarchical");
 
         return new ClusteringResult("Hierarchical", assignments, sizes);
     }

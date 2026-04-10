@@ -36,7 +36,7 @@ public class SegmentationController {
             result = clusteringService.runKMeans(frame,preparedData, k, 1);
              
        } else {
-            result = clusteringService.runHierarchical(preparedData, k);
+            result = clusteringService.runHierarchical(frame,preparedData, k);
         }
 
         clusteringService.printSummary(result, 10);
