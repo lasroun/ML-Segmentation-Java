@@ -116,8 +116,8 @@ public class MLSegmentationJavaView extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(67, 67, 67)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(24, 24, 24)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -224,17 +224,16 @@ public class MLSegmentationJavaView extends javax.swing.JFrame {
     private void jRbtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRbtn1ActionPerformed
         // TODO add your handling code here:
         if (jRbtn1.isSelected()) {
-            jLabel2.setVisible(true);
-            //jSpinner1.setVisible(true);
-            //jRbtn2.setSelected(false);
+            jLabel2.setText("Nbre de Groupes");
+            jRbtn2.setSelected(false);
         }
     }//GEN-LAST:event_jRbtn1ActionPerformed
 
     private void jRbtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRbtn2ActionPerformed
         if (jRbtn2.isSelected()) {
             jRbtn1.setSelected(false);
-            //jSpinner1.setVisible(false);
-            //jLabel2.setVisible(false);
+            
+            jLabel2.setText("Niveau de coupure Arbre");
         }
     }//GEN-LAST:event_jRbtn2ActionPerformed
 
