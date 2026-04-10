@@ -74,13 +74,13 @@ public class WekaView {
     public void afficher(JFrame frame, Instances data, String plotName, String titre) throws Exception {
 
         VisualizePanel vp = new VisualizePanel();
-        vp.setName("Visualisation KMeans");
+        vp.setName(titre);
 
         //  IMPORTANT : définir le plot AVANT les axes
         PlotData2D plot = new PlotData2D(data);
-        plot.setPlotName("Clusters");
+        plot.setPlotName(plotName);
 
-        vp.setMasterPlot(plot); // ⚠️ DOIT être avant setXIndex
+        vp.setMasterPlot(plot); 
 
         // maintenant seulement
         int xIndex = 0;
@@ -94,7 +94,7 @@ public class WekaView {
         frame.setLayout(new BorderLayout());
         frame.add(vp, BorderLayout.CENTER);
 
-        frame.setTitle("Visualisation KMeans");
+        frame.setTitle(titre);
         frame.setSize(800, 600);
         frame.setLocationRelativeTo(null);
 

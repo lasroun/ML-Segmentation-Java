@@ -72,7 +72,7 @@ public class ClusteringService {
     
     public void TracerKMEans(JFrame frame,Instances data,SimpleKMeans kMeans) throws Exception{
         WekaView view = new WekaView(data, kMeans);
-        String plotName ="",titre="";
+        String plotName ="Cluster",titre="Visualisation KMEANS";
         view.afficher(frame, data, plotName, titre);
     }
 
@@ -99,7 +99,7 @@ public class ClusteringService {
 
         // afficher graphe (sans centroides)
         WekaView view = new WekaView(clusteredData, null);
-        view.afficher(frame, clusteredData, "", "Hierarchical");
+        view.afficher(frame, clusteredData, "Cluster", "Visualisation Hierarchique");
 
         return new ClusteringResult("Hierarchical", assignments, sizes);
     }
