@@ -47,7 +47,9 @@ public class SegmentationController {
             result.getClusterSizes(),
             sample,
             cleanedCsv.getAbsolutePath(),
-            "Traitement termine avec succes. Details complets dans la console."
+            "Traitement termine avec succes. Details complets dans la console.",
+            result.getCentroids().toString()
+                
         );
     }
 }

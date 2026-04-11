@@ -14,12 +14,14 @@ public class ClusteringService {
         private final String algorithm;
         private final int[] assignments;
         private final int[] clusterSizes;
+        private final Instances centroids; // Ajouté ici
     
 
-        public ClusteringResult(String algorithm, int[] assignments, int[] clusterSizes) {
+        public ClusteringResult(String algorithm, int[] assignments, int[] clusterSizes, Instances centroids) {
             this.algorithm = algorithm;
             this.assignments = assignments;
             this.clusterSizes = clusterSizes;
+            this.centroids = centroids; // Initialisé ici
         }
 
         public String getAlgorithm() {
@@ -32,6 +34,11 @@ public class ClusteringService {
 
         public int[] getClusterSizes() {
             return clusterSizes;
+        }
+        
+        //On ajoute un getter pour récupérer les centroïdes plus tard
+        public Instances getCentroids() {
+            return centroids;
         }
     }
     
@@ -59,15 +66,19 @@ public class ClusteringService {
         kMeans.buildClusterer(data);
 
         int[] assignments = kMeans.getAssignments();
+        // Récupérer les centroïdes
+        Instances centroids = kMeans.getClusterCentroids();
         this.getDataWithCluster(data, assignments);
         Instances clusteredData = getDataWithCluster(data, assignments);
+        
         double[] weightedSizes = kMeans.getClusterSizes();
         int[] sizes = new int[weightedSizes.length];
         for (int i = 0; i < weightedSizes.length; i++) {
             sizes[i] = (int) Math.round(weightedSizes[i]);
         }
         TracerKMEans(frame, clusteredData, kMeans);
-        return new ClusteringResult("K-Means", assignments, sizes);
+        
+        return new ClusteringResult("K-Means", assignments, sizes, centroids); //On passe centroids au constructeur
     }
     
     public void TracerKMEans(JFrame frame,Instances data,SimpleKMeans kMeans) throws Exception{
@@ -101,12 +112,18 @@ public class ClusteringService {
         WekaView view = new WekaView(clusteredData, null);
         view.afficher(frame, clusteredData, "Cluster", "Visualisation Hierarchique");
 
-        return new ClusteringResult("Hierarchical", assignments, sizes);
+        return new ClusteringResult("Hierarchical", assignments, sizes, null); //Le clustering hiérarchique ne génère pas de centroïdes par défaut
     }
 
     public void printSummary(ClusteringResult result, int sampleSize) {
         System.out.println("\n=== Resultats " + result.getAlgorithm() + " ===");
         System.out.println("Tailles clusters: " + Arrays.toString(result.getClusterSizes()));
+        // Vérification si les centroïdes existent (K-Means)
+        if (result.getCentroids() != null) {
+            System.out.println("Centroides :\n" + result.getCentroids());
+        } else {
+            System.out.println("Centroides : Non applicable pour cet algorithme.");
+        }
 
         int[] assignments = result.getAssignments();
         int limit = Math.min(sampleSize, assignments.length);

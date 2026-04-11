@@ -9,19 +9,22 @@ public class SegmentationResult {
     private final int[] assignmentSample;
     private final String tempOutputPath;
     private final String message;
+    private String centroids;
 
     public SegmentationResult(
         String algorithm,
         int[] clusterSizes,
         int[] assignmentSample,
         String tempOutputPath,
-        String message
+        String message,
+        String centroids
     ) {
         this.algorithm = algorithm;
         this.clusterSizes = clusterSizes;
         this.assignmentSample = assignmentSample;
         this.tempOutputPath = tempOutputPath;
         this.message = message;
+        this.centroids = centroids;
     }
 
     public String getAlgorithm() {
@@ -44,10 +47,15 @@ public class SegmentationResult {
         return message;
     }
 
+    public String getCentroids() {
+        return centroids;
+    }
+
     public String toUiSummary() {
         return "Algo: " + algorithm
             + "\nTailles clusters: " + Arrays.toString(clusterSizes)
             + "\nExtrait affectations: " + Arrays.toString(assignmentSample)
+            + "\nCentroides : " + centroids
             + "\nCSV nettoye: " + tempOutputPath
             + "\n" + message;
     }
