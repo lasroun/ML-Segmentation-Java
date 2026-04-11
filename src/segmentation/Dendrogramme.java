@@ -5,13 +5,14 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
 
 /**
- * Dessine les sous-arbres obtenus par coupe du Newick Weka.
- * La coupe heuristique (plus grande distance de fusion) peut différer
- * légèrement des libellés de cluster renvoyés par {@code clusterInstance}.
+ * Panneau Swing du dendrogramme : modèle {@link Node}, {@link NewickParser}, coupe en {@code k} sous-arbres
+ * (plus grande distance de fusion à chaque fente) et dessin.
+ * La coupe heuristique peut différer légèrement des libellés de cluster renvoyés par {@code clusterInstance} Weka.
  */
 public class Dendrogramme extends JPanel {
 
@@ -23,9 +24,9 @@ public class Dendrogramme extends JPanel {
         new Color(155, 89, 182), new Color(241, 196, 15)
     };
 
-    /** Calcule les {@code k} sous-arbres racines via {@link DendrogrammeCutter} et configure le fond blanc. */
+    /** Coupe l'arbre en jusqu'à {@code k} racines puis configure le fond blanc. */
     public Dendrogramme(Node root, int k) {
-        this.clusters = DendrogrammeCutter.cut(root, k);
+        this.clusters = cut(root, k);
         setBackground(Color.WHITE);
         setOpaque(true);
     }
@@ -85,6 +86,135 @@ public class Dendrogramme extends JPanel {
                 g.fillOval(x - 3, y - 3, 6, 6);
                 g.drawString(node.name, x + 6, y + 4);
             }
+        }
+    }
+
+    /**
+     * Retourne jusqu'à {@code k} sous-arbres en fendant itérativement le nœud interne de plus grande distance de fusion.
+     */
+    private static List<Node> cut(Node root, int k) {
+        List<Node> clusters = new ArrayList<>();
+        clusters.add(root);
+
+        while (clusters.size() < k) {
+
+            Node maxNode = null;
+            double maxDist = -1;
+
+            for (Node n : clusters) {
+                if (n.left != null && n.right != null && n.distance > maxDist) {
+                    maxDist = n.distance;
+                    maxNode = n;
+                }
+            }
+
+            if (maxNode == null) {
+                break;
+            }
+
+            clusters.remove(maxNode);
+            clusters.add(maxNode.left);
+            clusters.add(maxNode.right);
+        }
+
+        return clusters;
+    }
+
+    /**
+     * Nœud d'un arbre Newick parsé : feuille si {@code left} et {@code right} sont nuls,
+     * sinon paire de fils et {@code distance} de fusion.
+     */
+    public static class Node {
+        String name;
+        double distance;
+        Node left;
+        Node right;
+    }
+
+    /**
+     * Parse récursivement une chaîne Newick (arbre binaire) en graphe de {@link Node}.
+     */
+    public static class NewickParser {
+
+        private int index = 0;
+
+        /**
+         * Remet l'index à zéro puis construit la racine ; attend un format binaire {@code (A,B):dist} ou feuille {@code label:dist}.
+         */
+        public Node parse(String s) {
+            index = 0;
+            if (s == null || s.isEmpty()) {
+                throw new IllegalArgumentException("Chaine Newick vide.");
+            }
+            if (s.charAt(index) == '(') {
+                index++;
+
+                Node left = parse(s);
+
+                index++;
+
+                Node right = parse(s);
+
+                index++;
+
+                Node parent = new Node();
+                parent.left = left;
+                parent.right = right;
+
+                if (index < s.length() && s.charAt(index) == ':') {
+                    index++;
+                    parent.distance = readNumber(s);
+                }
+
+                return parent;
+            } else {
+                Node leaf = new Node();
+                leaf.name = readLabel(s);
+
+                if (index < s.length() && s.charAt(index) == ':') {
+                    index++;
+                    leaf.distance = readNumber(s);
+                }
+
+                return leaf;
+            }
+        }
+
+        /** Lit un libellé de feuille jusqu'à {@code :} , {@code ,} ou {@code )}. */
+        private String readLabel(String s) {
+            StringBuilder sb = new StringBuilder();
+            while (index < s.length()
+                && s.charAt(index) != ':'
+                && s.charAt(index) != ','
+                && s.charAt(index) != ')') {
+                sb.append(s.charAt(index++));
+            }
+            return sb.toString();
+        }
+
+        /** Lit un réel (signe, notation scientifique optionnelle) à partir de la position courante. */
+        private double readNumber(String s) {
+            StringBuilder sb = new StringBuilder();
+            if (index < s.length() && (s.charAt(index) == '+' || s.charAt(index) == '-')) {
+                sb.append(s.charAt(index++));
+            }
+            while (index < s.length() && (Character.isDigit(s.charAt(index)) || s.charAt(index) == '.')) {
+                sb.append(s.charAt(index++));
+            }
+            if (index < s.length() && (s.charAt(index) == 'e' || s.charAt(index) == 'E')) {
+                sb.append(s.charAt(index++));
+                if (index < s.length() && (s.charAt(index) == '+' || s.charAt(index) == '-')) {
+                    sb.append(s.charAt(index++));
+                }
+                while (index < s.length() && Character.isDigit(s.charAt(index))) {
+                    sb.append(s.charAt(index++));
+                }
+            }
+            String str = sb.toString();
+            if (str.isEmpty() || str.equals("+") || str.equals("-")) {
+                return 0.0;
+            }
+            return Double.parseDouble(str);
         }
     }
 }

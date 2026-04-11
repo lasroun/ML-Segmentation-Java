@@ -107,8 +107,7 @@ public class ClusteringService {
 
         String newick = graph.replace("Newick:", "").trim();
 
-        NewickParser parser = new NewickParser();
-        Node root = parser.parse(newick);
+        Dendrogramme.Node root = new Dendrogramme.NewickParser().parse(newick);
 
         JFrame frame = new JFrame("Dendrogramme");
         frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
