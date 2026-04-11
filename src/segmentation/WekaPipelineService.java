@@ -11,8 +11,10 @@ import weka.core.Instances;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.Normalize;
 
+/** Charge un CSV en {@link Instances} Weka puis filtre et normalise pour le clustering. */
 public class WekaPipelineService {
 
+    /** Charge le fichier via le parseur interne et vérifie que le jeu n'est pas vide. */
     public Instances loadCsv(File file) throws Exception {
         Instances data = parseCsvFallback(file);
 
@@ -23,6 +25,7 @@ public class WekaPipelineService {
         return data;
     }
 
+    /** Parse ligne par ligne (virgule), infère types numériques vs texte et construit le header Weka. */
     private Instances parseCsvFallback(File file) throws Exception {
         List<String[]> rows = new ArrayList<>();
 
@@ -81,6 +84,7 @@ public class WekaPipelineService {
         return data;
     }
 
+    /** Pour chaque colonne, indique si toutes les valeurs d'exemple sont parseables en nombre. */
     private List<Boolean> detectNumericColumns(List<String[]> rows, int columnCount) {
         List<Boolean> numericFlags = new ArrayList<>();
 
@@ -108,6 +112,7 @@ public class WekaPipelineService {
         return numericFlags;
     }
 
+    /** Supprime les attributs non numériques pour ne garder que des colonnes exploitables par les clusterers. */
     public Instances removeTextColumns(Instances data) {
         Instances filtered = new Instances(data);
         List<String> removedAttributes = new ArrayList<>();
@@ -131,12 +136,14 @@ public class WekaPipelineService {
         return filtered;
     }
 
+    /** Applique le filtre Weka {@link Normalize} sur une copie des données. */
     public Instances normalize(Instances data) throws Exception {
         Normalize normalize = new Normalize();
         normalize.setInputFormat(data);
         return Filter.useFilter(data, normalize);
     }
 
+    /** Chaîne complète : chargement, suppression colonnes texte, normalisation, avec journaux console. */
     public Instances prepareData(File file) throws Exception {
         Instances loaded = loadCsv(file);
         logDataset("Apres chargement", loaded);
@@ -150,6 +157,7 @@ public class WekaPipelineService {
         return normalized;
     }
 
+    /** Affiche sur la console le nombre d'instances, d'attributs et leurs noms pour une étape donnée. */
     public void logDataset(String step, Instances data) {
         System.out.println("=== " + step + " ===");
         System.out.println("Instances: " + data.numInstances());

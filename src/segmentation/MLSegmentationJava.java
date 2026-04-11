@@ -1,14 +1,12 @@
 package segmentation;
 
-public class MLSegmentationJava 
-{
-    public static void main(String[] args) 
-    {
-        // On demande à Java de lancer l'interface graphique
-        java.awt.EventQueue.invokeLater(() -> 
-        {
-            // On crée une instance de ta vue et on la rend visible
-            new MLSegmentationJavaView().setVisible(true);
-        });
+/** Point d'entrée de l'application : lance la fenêtre principale sur le thread Swing. */
+public class MLSegmentationJava {
+
+    /**
+     * Affiche {@link MLSegmentationJavaView} de façon thread-safe via la file d'événements AWT.
+     */
+    public static void main(String[] args) {
+        java.awt.EventQueue.invokeLater(() -> new MLSegmentationJavaView().setVisible(true));
     }
 }

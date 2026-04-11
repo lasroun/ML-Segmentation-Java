@@ -16,22 +16,24 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-/**
- *
- * @author THINKPAD
- */
+/** Lecture et nettoyage de CSV (remplacement des {@code -1} par des moyennes par colonne). */
 public class ReaderService {
 
-       /**
-     * Methode principale qui nettoie le fichier.
-     * @param fileIn Le fichier CSV d'origine.
-     * @param separator Le separateur à utiliser pour le fichier de sortie.
-     * @return Le fichier temporaire nettoye.
+    /**
+     * Nettoie le CSV vers un fichier temporaire à la racine du processus.
+     *
+     * @return fichier écrit ou {@code null} si erreur
+     * @see #donneFichierNettoye(File, String, File)
      */
     public File donneFichierNettoye(File fileIn, String separator) {
         return donneFichierNettoye(fileIn, separator, null);
     }
 
+    /**
+     * Lit {@code fileIn}, remplace les valeurs {@code -1} par la moyenne de colonne, écrit {@code output_temp.*} dans {@code outDir} ou le répertoire courant.
+     *
+     * @return le fichier produit ou {@code null} si le source est absent ou en cas d'I/O
+     */
     public File donneFichierNettoye(File fileIn, String separator, File outDir) {
         if (!fileIn.exists()) {
             System.err.println("Erreur : Le fichier source n'existe pas.");
@@ -101,10 +103,7 @@ public class ReaderService {
         }
     }
 
-    /**
-     * Scanne le fichier une première fois pour calculer la moyenne des colonnes.
-     * Ignore les valeurs -1 et les colonnes textuelles.
-     */
+    /** Première passe : moyenne par index de colonne en ignorant {@code -1} et les cellules non numériques. */
     private Map<Integer, Double> calculerToutesLesMoyennes(File file) {
         Map<Integer, Double> moyennes = new HashMap<>();
         Map<Integer, List<Double>> valeursParCol = new HashMap<>();
@@ -146,9 +145,7 @@ public class ReaderService {
         return moyennes;
     }
 
-    /**
-     * Recupère l'extension d'un fichier.
-     */
+    /** Retourne l'extension (sans le point) ou {@code "csv"} si aucune extension détectée. */
     public String getExtension(String nomFile) {
         int index = nomFile.lastIndexOf('.');
         if (index > 0) {
@@ -157,9 +154,7 @@ public class ReaderService {
         return "csv"; // Par defaut
     }
 
-    /**
-     * Test rapide du service
-     */
+    /** Point d'entrée manuel pour tester le nettoyage sur {@code cereal.csv} à la racine. */
     public static void main(String[] args) {
         ReaderService rds = new ReaderService();
         File f = new File("./cereal.csv");

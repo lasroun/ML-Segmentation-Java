@@ -5,8 +5,7 @@
 package segmentation;
 
 /**
- *
- * @author THINKPAD
+ * Noeud d'un arbre Newick parsé : feuille si {@code left} et {@code right} sont nuls, sinon paire de fils et {@code distance} de fusion.
  */
 class Node {
     String name;

@@ -1,16 +1,16 @@
 package segmentation;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- *
- * @author THINKPAD
+ * Coupe un arbre Newick en plusieurs racines en fendant de façon itérative le nœud interne de plus grande distance de fusion.
  */
 public class DendrogrammeCutter {
 
+    /**
+     * Retourne jusqu'à {@code k} sous-arbres ; s'arrête plus tôt si aucun nœud interne n'est plus divisible.
+     */
     public static List<Node> cut(Node root, int k) {
         List<Node> clusters = new ArrayList<>();
         clusters.add(root);

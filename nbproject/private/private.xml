@@ -2,6 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/Users/lasroun/work/github/ML-Segmentation-Java/src/segmentation/SegmentationController.java</file>
+            <file>file:/Users/lasroun/work/github/ML-Segmentation-Java/src/segmentation/SegmentationResult.java</file>
+            <file>file:/Users/lasroun/work/github/ML-Segmentation-Java/src/segmentation/ReaderService.java</file>
+            <file>file:/Users/lasroun/work/github/ML-Segmentation-Java/src/segmentation/MLSegmentationJavaView.java</file>
+            <file>file:/Users/lasroun/work/github/ML-Segmentation-Java/src/segmentation/WekaView.java</file>
+            <file>file:/Users/lasroun/work/github/ML-Segmentation-Java/src/segmentation/ClusteringService.java</file>
+            <file>file:/Users/lasroun/work/github/ML-Segmentation-Java/src/segmentation/Node.java</file>
+            <file>file:/Users/lasroun/work/github/ML-Segmentation-Java/src/segmentation/NewickParser.java</file>
+        </group>
     </open-files>
 </project-private>
