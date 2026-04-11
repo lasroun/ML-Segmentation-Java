@@ -15,6 +15,7 @@ public class SegmentationController {
     private final ReaderService readerService;
     private final WekaPipelineService pipelineService;
     private final ClusteringService clusteringService;
+    private int[] cluster ;
 
     public SegmentationController() {
         this.readerService = new ReaderService();
@@ -34,9 +35,10 @@ public class SegmentationController {
         ClusteringService.ClusteringResult result;
         if (choice == AlgorithmChoice.K_MEANS) {
             result = clusteringService.runKMeans(frame,preparedData, k, 1);
-             
+            cluster = result.getClusterSizes(); 
        } else {
             result = clusteringService.runHierarchical(frame,preparedData, k);
+            cluster = new int[0];
         }
 
         clusteringService.printSummary(result, 10);
@@ -44,11 +46,11 @@ public class SegmentationController {
         int[] sample = Arrays.copyOf(result.getAssignments(), Math.min(10, result.getAssignments().length));
         return new SegmentationResult(
             result.getAlgorithm(),
-            result.getClusterSizes(),
+            cluster,
             sample,
             cleanedCsv.getAbsolutePath(),
             "Traitement termine avec succes. Details complets dans la console.",
-            result.getCentroids().toString()
+            result.getCentroids() != null? result.getCentroids().toString() : "Non applicable pour cet alogorithme"
                 
         );
     }
