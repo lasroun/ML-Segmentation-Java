@@ -81,12 +81,12 @@ public class WekaView {
             Attribute clusterAttr = new Attribute("cluster");
             centroids.insertAttributeAt(clusterAttr, centroids.numAttributes());
 
-// remplir valeur cluster
+            // remplir valeur cluster
             for (int i = 0; i < centroids.numInstances(); i++) {
                 centroids.instance(i).setValue(centroids.numAttributes() - 1, i);
             }
 
-// définir comme classe
+            // définir comme classe
             centroids.setClassIndex(centroids.numAttributes() - 1);
 
             vp.addPlot(centroidPlot);

@@ -99,50 +99,12 @@ public class ClusteringService {
         JFrame frame = new JFrame("Dendrogramme");
         frame.setSize(800, 600);
 
-        frame.add(new Dendrogramme(root, k)); // 🔥 IMPORTANT
+        frame.add(new Dendrogramme(root, k)); 
 
         frame.setVisible(true);
         
     }
-    /*public void tracerDendogramme(String graph, int k,JFrame frame) {
 
-        String newick = graph.replace("Newick:", "").trim();
-
-        NewickParser parser = new NewickParser();
-        Node root = parser.parse(newick);
-
-        List<Node> clusters = DendrogrammeCutter.cut(root, k);
-
-       frame = new JFrame("Dendrogramme PRO");
-        frame.setSize(1000, 600);
-        frame.setLayout(new BorderLayout());
-
-        // 🎨 dendrogramme
-        Dendrogramme panel = new Dendrogramme(root, k);
-        frame.add(panel, BorderLayout.CENTER);
-
-        // 📋 panneau clusters
-        JTextArea clusterArea = new JTextArea();
-        clusterArea.setEditable(false);
-
-        StringBuilder sb = new StringBuilder();
-
-        int i = 1;
-        for (Node cluster : clusters) {
-            List<String> leaves = new ArrayList<>();
-            ClusterUtils.collectLeaves(cluster, leaves);
-
-            sb.append("Cluster ").append(i).append(":\n");
-            sb.append(leaves).append("\n\n");
-            i++;
-        }
-
-        clusterArea.setText(sb.toString());
-
-        frame.add(new JScrollPane(clusterArea), BorderLayout.EAST);
-
-        frame.setVisible(true);
-    }*/
 
     public ClusteringResult runHierarchical(JFrame frame, Instances data, int k) throws Exception {
         HierarchicalClusterer hierarchical = new HierarchicalClusterer();
